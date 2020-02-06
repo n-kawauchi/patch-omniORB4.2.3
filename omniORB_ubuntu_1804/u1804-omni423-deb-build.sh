@@ -35,6 +35,7 @@ wget https://sourceforge.net/projects/omniorb/files/omniORB/omniORB-${OMNI_VER}/
 tar xf omniORB-${OMNI_VER}.tar.bz2
 
 # Get the debian directory from the package creation source.
+echo "${password}" | sudo -S apt install -y dpkg-dev 
 apt source omniorb
 OMNI_PKG_SRC_DIR=`ls -d omniorb-dfsg*/`
 OMNI_PKG_SRC_NAME=`echo ${OMNI_PKG_SRC_DIR} | sed 's/\///'`
