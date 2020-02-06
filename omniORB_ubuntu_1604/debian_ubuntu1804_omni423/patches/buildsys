@@ -1,0 +1,62 @@
+Description: Avoid forked code in the build system
+ This replaces omkdirhier and omkdepend which are source-level copies
+ of other projects.  They are only used during the build system and
+ can be easily replicated using standard OS and compiler programs.
+Forwarded: http://www.omniorb-support.com/pipermail/omniorb-list/2002-October/022062.html
+Author: Bastian Blank <waldi@debian.org>
+Last-Update: 2010-08-08
+
+Index: b/mk/beforeauto.mk.in
+===================================================================
+--- a/mk/beforeauto.mk.in
++++ b/mk/beforeauto.mk.in
+@@ -68,7 +68,6 @@ else
+     TOOLBINDIR = $(TOP)/$(BINDIR)
+ endif
+ 
+-OMKDEPEND        = $(TOOLBINDIR)/omkdepend
+ OMNIORB_IDL_ONLY = $(TOOLBINDIR)/omniidl -bcxx
+ 
+ else
+@@ -708,7 +707,7 @@ AR              = ar cq
+ CC              = @CC@
+ CXX             = @CXX@
+ RANLIB		= @RANLIB@
+-MKDIRHIER	= $(BASE_OMNI_TREE)/bin/scripts/omkdirhier
++MKDIRHIER	= mkdir -p
+ INSTLIBFLAGS	= -m 0644
+ INSTEXEFLAGS	= -m 0755
+ CP		= cp
+@@ -716,8 +715,8 @@ MV		= mv -f
+ CPP		= @CPP@
+ RMDIRHIER	= $(RM) -rf
+ 
+-CXXMAKEDEPEND   = $(OMKDEPEND) -D__cplusplus
+-CMAKEDEPEND     = $(OMKDEPEND)
++CXXMAKEDEPEND   = @CXX@ -M -MD -MG
++CMAKEDEPEND     = @CC@ -M -MD -MG
+ 
+ 
+ #
+@@ -786,8 +785,6 @@ CXXLINKOPTIONS  = @LDFLAGS@ $(CXXDEBUGFL
+ #
+ 
+ ifdef Compiler_GCC
+-CMAKEDEPEND     += -D__GNUC__
+-CXXMAKEDEPEND   += -D__GNUG__ -D__GNUC__
+ CXXOPTIONS       = -Wall -Wno-unused -fexceptions @EXTRA_GCC_CXXFLAGS@
+ EgcsMajorVersion = 1
+ EgcsMinorVersion = 1
+Index: b/src/tool/dir.mk
+===================================================================
+--- a/src/tool/dir.mk
++++ b/src/tool/dir.mk
+@@ -7,7 +7,7 @@ export::
+ endif
+ 
+ ifdef UnixPlatform
+-SUBDIRS = omkdepend omniidl
++SUBDIRS = omniidl
+ endif
+ 
+ ifdef Win32Platform

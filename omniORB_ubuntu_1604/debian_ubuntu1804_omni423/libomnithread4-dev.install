@@ -1,0 +1,5 @@
+usr/lib/*/libomnithread.a
+usr/lib/*/libomnithread.so
+usr/lib/*/pkgconfig/omnithread4.pc
+usr/include/omnithread.h
+usr/include/omnithread/

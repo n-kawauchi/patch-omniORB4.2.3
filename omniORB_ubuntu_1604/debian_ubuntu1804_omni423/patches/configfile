@@ -1,0 +1,18 @@
+Description: Use empty corbaloc URI for DefaultInitRef
+ This works nicely together with how the omniNames nameserver is
+ shipped in Debian.
+Forwarded: not-needed
+Author: Bastian Blank <waldi@debian.org>
+Last-Update: 2010-08-08
+
+--- a/sample.cfg
++++ b/sample.cfg
+@@ -374,7 +374,7 @@
+ #   A call to resolve_initial_references("MyService") will return the object
+ #   reference denoted by `corbaloc::myhost.example.com/MyService'.
+ #
+-#   The default is empty.
++DefaultInitRef = corbaloc::
+ 
+ 
+ ############################################################################

@@ -1,0 +1,81 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH OMNINAMES 8 "30 Apr 2007"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+omniNames \- OmniORB Interoperable Naming Service
+.SH SYNOPSIS
+.B omniNames
+.RI [ options ]
+.RI [ omniORB-options ]
+.SH DESCRIPTION
+This manual page documents briefly the
+.B omniNames
+command.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" respectively.
+\fBomniNames\fP is omniORBs Interoperable Naming Service for CORBA,
+an implementation of the OMG's COS Naming Service Specification.
+To make it easy to use \fBomniNames\fP with \fIcorbaname\fP URIs, it
+starts with the default port of 2809 and an object key of
+\fINameService\fP for the root naming context.
+.PP
+When started for the first time \fBomniNames\fP needs to be told which port
+it should listen on.  This is specified with the \fI\-start\fP option.
+Subsequentley \fBomniNames\fP will always determine its port from the log
+file which it writes.
+.PP
+When omniNames starts up successfully it writes the stringified object
+reference for its root context on standard error.
+.SH OPTIONS
+A summary of options is included below.
+For a complete description, see the HTML pages included in the
+omniorb-doc package.
+.TP
+.BI \-start\ [ port ]
+This needs to be used the first time omniNames is run.  With no
+\fIport\fP argument the standard default of 2809 is used.
+.TP
+.BI \-logdir \ directory_name
+This specifies the directory where the log/data files are kept.  By
+default \fI/var/lib/omniorb-nameserver/\fP is used.
+.TP
+.BI \-errlog \ file_name
+Where to redirect standard error output.
+.TP
+.B \-ignoreport
+Ignore the port specification.
+.SH ENVIRONMENT
+.TP
+OMNINAMES_LOGDIR
+Alternate way to specify the directory where the log/data files are
+kept.
+.TP
+OMNINAMES_ITBC
+Idle time between checkpoints in seconds.  It defaults to 15 minutes.
+.SH SEE ALSO
+.BR omniMapper (8).
+.br
+The programs are documented fully by the HTML documentation in the
+omniorb-doc package.
+.SH AUTHOR
+omniNames was written by Duncan Grisby <duncan@grisby.org>
+.PP
+This manual page was written by Floris Bruynooghe
+<floris.bruynooghe@gmail.com>, for the Debian project (but may be
+used by others).

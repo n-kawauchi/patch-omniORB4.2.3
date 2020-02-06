@@ -1,0 +1,90 @@
+This package was debianized by Bastian Blank <waldi@debian.org> on
+Wed, 27 Mar 2002 17:29:02 +0100
+
+It was downloaded from http://omniorb.sf.net/ but was repackaged to
+remove pre-built windows binaries and zipfiles used for some
+non-debian ports with unclear copyright information.
+
+Upstream Author: Duncan Grisby <duncan@grisby.org>
+
+Files: *
+Copyright: © 1994-2002 AT&T Laboratories Cambridge
+           © 1994-1997 Olivetti & Oracle Research Laboratory
+           © 2002 Duncan Grisby
+           © 2002-2007 Apasphere Ltd
+           © 1994-1997 Immisch, Becker & Partner
+           © Wavetek Wandel & Goltermann, Plymouth
+           © 1998 Steven Brennes
+           © 1999-2000 ConnectTel, Inc
+           © 2003 Traventec
+License: LGPL-2+
+ This package is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+Files: src/appl/*, src/tool/omniidl/cxx/cccp/*
+Copyright: © 1997-2000 AT&T Laboratories Cambridge
+           © 2007 Apasphere Ltd
+           © 1986-1997 Free Software Foundation, Inc
+           © 1984, 1989, 1990 Bob Corbett and Richard Stallman
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published
+ by the Free Software Foundation; either version 2 of the License,
+ or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+
+Files: src/tool/omniidl/*
+Copyright: © 1999-2001 AT&T Laboratories Cambridge
+License: GPL-2+ | other
+ As a special exception to the terms of the GPL, we do not consider
+ back-ends to be derived works of omniidl. This means that you may
+ distribute back-ends you write under any terms you like. The back-ends
+ we distribute are licensed under the GPL, so you must abide by its
+ terms if you distribute or modify our back-ends.
+ .
+ As another exception, we do not consider the output of the back-ends
+ we distribute to be derived works of those back-ends. You may
+ therefore use generated stubs with no restrictions.
+
+Files: src/tool/omkdepend/*
+Copyright: © 1993, 1994  X Consortium
+           © 1992 Network Computing Devices, Inc
+License: other-BSD
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+ X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of the X Consortium shall not be
+ used in advertising or otherwise to promote the sale, use or other dealings
+ in this Software without prior written authorization from the X Consortium.
+
+
+On Debian GNU/Linux systems, the complete text of the GNU Lesser General
+Public License version 2 can be found in `/usr/share/common-licenses/LGPL-2'.
+
+On Debian GNU/Linux systems, the complete text of the GNU General Public
+License version 2 can be found in `/usr/share/common-licenses/GPL-2'.

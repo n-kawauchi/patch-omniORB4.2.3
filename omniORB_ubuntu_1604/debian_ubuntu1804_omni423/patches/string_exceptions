@@ -1,0 +1,76 @@
+Description: Remove string exceptions, they are unsupported in Python 2.6
+ Python 2.6 accidentically removed string exceptions, and these where
+ still used by the C++ backend of omniidl.
+Bug-Debian: http://bugs.debian.org/585260
+Forwarded: http://www.omniorb-support.com/pipermail/omniorb-dev/2010-July/000296.html
+Author: Floris Bruynooghe <flub@devork.be>
+Last-Update: 2010-08-08
+
+--- a/src/lib/omniORB/omniidl_be/cxx/ast.py
++++ b/src/lib/omniORB/omniidl_be/cxx/ast.py
+@@ -352,8 +352,8 @@
+             if enum not in values: return 0
+         return 1
+ 
+-    raise "exhaustiveMatch type="+repr(type)+ \
+-          " val="+repr(discrimvalue)
++    raise AssertionError("exhaustiveMatch type="+repr(type)+
++                         " val="+repr(discrimvalue))
+ 
+ 
+ # Return the base AST node after following all the typedef chains
+--- a/src/lib/omniORB/omniidl_be/cxx/dynskel/typecode.py
++++ b/src/lib/omniORB/omniidl_be/cxx/dynskel/typecode.py
+@@ -376,8 +376,8 @@
+ 
+     if isinstance(type, idltype.Base):
+         util.fatalError("Internal error generating TypeCode data")
+-        raise "Don't know how to generate TypeCode for Base kind = " +\
+-              repr(type.kind())
++        raise AssertionError("Don't know how to generate TypeCode for"
++			     "Base kind = " + repr(type.kind()))
+ 
+     if isinstance(type, idltype.String):
+         return prefix + "string_tc(" + str(type.bound()) + tctrack + ")"
+--- a/src/lib/omniORB/omniidl_be/cxx/impl/main.py
++++ b/src/lib/omniORB/omniidl_be/cxx/impl/main.py
+@@ -244,7 +244,7 @@
+                                        "::" + args)
+             else:
+                 util.fatalError("Internal error generating interface member")
+-                raise "No code for interface member: " + repr(c)
++                raise AssertionError("No code for interface member: "+repr(c))
+ 
+         # the class definition has no actual code...
+         defs = string.join(map(lambda x:x + ";\n", declarations), "")
+--- a/src/lib/omniORB/omniidl_be/cxx/types.py
++++ b/src/lib/omniORB/omniidl_be/cxx/types.py
+@@ -793,7 +793,7 @@
+         if d_T.void():
+             raise NotImplementedError("No such thing as a void _var type")
+ 
+-        raise "Unknown _var type, kind = " + str(d_T.kind())
++        raise AssertionError("Unknown _var type, kind = " + str(d_T.kind()))
+ 
+     def out(self, ident):
+         if self.is_basic_data_types():
+@@ -826,7 +826,8 @@
+         if d_T.enum() or d_T.void() or (self.is_basic_data_types()):
+             return ""
+ 
+-        raise "Don't know how to free type, kind = " + str(d_T.kind())
++        raise AssertionError("Don't know how to free type, kind = "
++			     + str(d_T.kind()))
+ 
+     def copy(self, src, dest, environment = None):
+         """Copies an entity from src to dest"""
+@@ -861,7 +862,8 @@
+         if d_T.enum() or self.is_basic_data_types():
+             return dest + " = " + src + ";"
+ 
+-        raise "Don't know how to copy type, kind = " + str(d_T.kind())
++        raise AssertionError("Don't know how to copy type, kind = "
++			     + str(d_T.kind()))
+                
+     def representable_by_int(self):
+         """representable_by_int(types.Type): boolean

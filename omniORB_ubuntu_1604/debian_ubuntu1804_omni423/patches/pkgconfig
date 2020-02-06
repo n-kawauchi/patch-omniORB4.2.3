@@ -1,0 +1,62 @@
+Description: Adapt pkgconfig files to new release
+--- a/contrib/pkgconfig/GNUmakefile.in
++++ b/contrib/pkgconfig/GNUmakefile.in
+@@ -6,7 +6,7 @@
+ 
+ INSTALLDIR = $(INSTALLLIBDIR)/pkgconfig
+ 
+-PKGFILES = omnithread3.pc omniORB4.pc omniDynamic4.pc \
++PKGFILES = omnithread4.pc omniORB4.pc omniDynamic4.pc \
+            omniCOS4.pc omniCOSDynamic4.pc omniConnectionMgmt4.pc \
+            omniZIOP4.pc omniZIOPDynamic4.pc
+ 
+--- a/contrib/pkgconfig/omniORB4.pc.in
++++ b/contrib/pkgconfig/omniORB4.pc.in
+@@ -9,7 +9,7 @@
+ Name: omniORB4
+ Description: CORBA Object Request Broker.
+ Version: @PACKAGE_VERSION@
+-Requires: omnithread3
++Requires: omnithread4
+ Libs: -L${libdir} -lomniORB4
+ Cflags: -I${includedir}
+ unloadable_stubs=-DOMNI_UNLOADABLE_STUBS
+--- a/contrib/pkgconfig/omnithread3.pc.in
++++ b/contrib/pkgconfig/omnithread3.pc.in
+@@ -1,11 +0,0 @@
+-prefix=@prefix@
+-exec_prefix=@exec_prefix@
+-libdir=@libdir@
+-includedir=@includedir@
+-
+-Name: omnithread3
+-Description: Threading library for omniORB4
+-Version: @PACKAGE_VERSION@
+-Requires:
+-Libs: -L${libdir} -lomnithread
+-Cflags: -D@PROCESSOR_DEFINE@ -D@PLATFORM_DEFINE@ -D__OSVERSION__=@OSVERSION@ -I${includedir}
+--- a/contrib/pkgconfig/omnithread4.pc.in
++++ b/contrib/pkgconfig/omnithread4.pc.in
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: omnithread4
++Description: Threading library for omniORB4
++Version: @PACKAGE_VERSION@
++Requires:
++Libs: -L${libdir} -lomnithread
++Cflags.private: -D@PROCESSOR_DEFINE@ -D@PLATFORM_DEFINE@ -D__OSVERSION__=@OSVERSION@ -I${includedir}
+--- a/configure.ac
++++ b/configure.ac
+@@ -330,7 +330,7 @@
+                 contrib/pkgconfig/GNUmakefile)
+ 
+ AC_OUTPUT([
+-contrib/pkgconfig/omnithread3.pc
++contrib/pkgconfig/omnithread4.pc
+ contrib/pkgconfig/omniORB4.pc
+ contrib/pkgconfig/omniDynamic4.pc
+ contrib/pkgconfig/omniCOS4.pc

@@ -1,0 +1,19 @@
+Description: Ensure omniorb works with sysctl net.ipv6.bindv6only=1
+ At some point the netbase package shipped with a
+ /etc/sysctl.d/bindv6only.conf file setting net.ipv6.bindv6only=1.
+ Depending on the upgrade path of the system this might still be
+ lingering aroung.  This patch ensures that omniorb will work
+ regardless of that setting.
+Bug-Debian: http://bugs.debian.org/624099
+Author: Upstream
+
+--- a/include/omniORB4/internal/tcpSocket.h
++++ b/include/omniORB4/internal/tcpSocket.h
+@@ -46,7 +46,6 @@
+ 
+ #define SOCKNAME_SIZE_T OMNI_SOCKNAME_SIZE_T
+ #define USE_NONBLOCKING_CONNECT
+-#define OMNI_IPV6_SOCKETS_ACCEPT_IPV4_CONNECTIONS
+ #define OMNIORB_HOSTNAME_MAX 512
+ 
+ #ifdef HAVE_POLL

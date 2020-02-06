@@ -1,0 +1,219 @@
+Source: omniorb
+Section: devel
+Priority: optional
+Maintainer: Debian CORBA Team <pkg-corba-devel@lists.alioth.debian.org>
+Uploaders: Floris Bruynooghe <flub@devork.be>, Thomas Girard <thomas.g.girard@free.fr>
+Build-Depends: debhelper (>= 9),
+  python3-dev,
+  libssl-dev,
+  zlib1g-dev,
+  pkg-config,
+  dh-python,
+  autotools-dev,
+  dh-autoreconf
+Standards-Version: 4.1.1
+Vcs-Svn: svn://svn.debian.org/svn/pkg-corba/trunk/omniorb
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-corba/trunk/omniorb
+Homepage: http://omniorb.sourceforge.net
+
+Package: omniorb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: IOR and naming service utilities for omniORB
+ omniORB is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+
+Package: omniorb-idl
+Architecture: all
+Depends: ${misc:Depends}
+Description: omniORB CORBA services idl files
+ omniORB is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the idl files.
+
+Package: omniorb-nameserver
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, lsb-base
+Description: omniORB naming service
+ omniORB is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the CORBA nameserver.
+
+Package: omniorb-doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Section: doc
+Description: omniORB documentation
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the documentation.
+
+Package: libcos4-2
+Architecture: any
+Multi-Arch: same
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libcos4-1
+Replaces: libcos4-1
+Description: omniORB CORBA services stubs
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes libcos4 and libcosdynamic4.
+
+Package: libcos4-2-dbg
+Architecture: any
+Multi-Arch: same
+Section: debug
+Priority: optional
+Depends: libcos4-2 (= ${binary:Version}), ${misc:Depends}
+Description: omniORB CORBA services stubs debugging symbols
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the debug versions of libcos4 and libcosdynamic4.
+
+Package: libcos4-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: libcos4-2 (= ${binary:Version}), libomniorb4-dev (= ${binary:Version}), pkg-config, ${misc:Depends}
+Description: omniORB CORBA services stubs development files
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes developer files for libcos4 and libcosdynamic4.
+
+Package: libomniorb4-2
+Architecture: any
+Multi-Arch: same
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libomniorb4-1
+Replaces: libomniorb4-1
+Description: omniORB core libraries
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes libomniorb4, libomnicodesets4, libomnidynamic4
+ and libomnissltp4.
+
+Package: libomniorb4-2-dbg
+Architecture: any
+Multi-Arch: same
+Section: debug
+Priority: optional
+Depends: libomniorb4-2 (= ${binary:Version}), ${misc:Depends}
+Description: omniORB core libraries debugging symbols
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the debug versions of libomniorb4, libomnicodesets4,
+ libomnidynamic4 and libomnissltp4.
+
+Package: libomniorb4-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: libomniorb4-2 (= ${binary:Version}), libomnithread4-dev (= ${binary:Version}), libssl-dev, pkg-config, ${misc:Depends}
+Breaks: libomniorb3-dev
+Replaces: libomniorb3-dev
+Description: omniORB core libraries development files
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes developer files for libomniorb4, libomnicodesets4,
+ libomnidynamic4 and libomnissltp4.
+
+Package: libomnithread4
+Architecture: any
+Multi-Arch: same
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ threading library
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes libomnithread4.
+
+Package: libomnithread4-dbg
+Architecture: any
+Multi-Arch: same
+Section: debug
+Priority: optional
+Depends: libomnithread4 (= ${binary:Version}), ${misc:Depends}
+Description: C++ threading library debugging symbols
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the debug version of libomnithread4.
+
+Package: libomnithread4-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: libomnithread4 (= ${binary:Version}), pkg-config, ${misc:Depends}
+Breaks: libomnithread3-dev
+Replaces: libomnithread3-dev
+Description: C++ threading library development files
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes developer files libomnithread4.
+
+Package: omniidl
+Architecture: any
+Depends: ${shlibs:Depends}, ${python3:Depends}, ${misc:Depends}
+Suggests: omniidl-python
+Breaks: omniidl-python (<< 3.5-1)
+Description: omniORB IDL to C++ and Python compiler
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the idl compiler.

@@ -1,0 +1,18 @@
+Description: Remove unneeded hash-bang line
+ The main.py module is the entrypoint of omniidl and for some reason
+ shipped with a hash-bang line upstream, even tough a binary wrapper is
+ created at install time.
+ .
+ Debian policy doesn't like hash-bang lines in normal modules however,
+ so we remove this.
+Forwarded: no
+Author: Floris Bruynooghe <flub@devork.be>
+Last-Update: 2011-07-21
+
+--- a/src/tool/omniidl/python/omniidl/main.py
++++ b/src/tool/omniidl/python/omniidl/main.py
+@@ -1,4 +1,3 @@
+-#!/usr/bin/env python
+ # -*- python -*-
+ #                           Package   : omniidl
+ # main.py                   Created on: 1999/11/05

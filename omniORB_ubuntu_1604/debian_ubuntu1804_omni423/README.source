@@ -1,0 +1,8 @@
+= Compiling omniORB =
+
+ * omniORB-<version>.tar.bz2 is retrieved from:
+     http://omniorb.sourceforge.net
+
+ * It was repackaged to remove etc/*.zip and bin/x86_win32/*
+
+ -- Floris Bruynooghe <flub@devork.be>, Fri, 28 Mar 2014 00:28:34 +0000

@@ -1,0 +1,22 @@
+Description: Enable all COS service stubs to be built
+ Upstream does not build all COS stubs by default, our users do want
+ to have all of them available hower.
+Bug-Debian: http://bugs.debian.org/107107
+Forwarded: not-needed
+Author: Floris Bruynooghe <flub@devork.be>
+Last-Update: 2010-08-08
+
+--- a/src/services/mklib/libdefs.mk
++++ b/src/services/mklib/libdefs.mk
+@@ -1,9 +1,9 @@
+ # Edit COS_INTERFACES to select which COS idl to build into the stub library.
+ #
+ # All the interfaces:
+-#COS_INTERFACES = $(COS_ALL_INT)
++COS_INTERFACES = $(COS_ALL_INT)
+ # Or just the Notification interfaces:
+-COS_INTERFACES = $(TIMEBASE_INT) $(COS_EVT_INT) $(COS_NFY_INT) $(COS_LCB_INT)
++#COS_INTERFACES = $(TIMEBASE_INT) $(COS_EVT_INT) $(COS_NFY_INT) $(COS_LCB_INT)
+ # Or pick your own subset
+ # COS_INTERFACES = <pick you own subset from cosinterfaces.mk>
+ 

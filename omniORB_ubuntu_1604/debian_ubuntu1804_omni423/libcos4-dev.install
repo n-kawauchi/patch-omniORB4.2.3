@@ -1,0 +1,7 @@
+usr/lib/*/libCOS4.a
+usr/lib/*/libCOS4.so
+usr/lib/*/libCOSDynamic4.a
+usr/lib/*/libCOSDynamic4.so
+usr/lib/*/pkgconfig/omniCOS4.pc
+usr/lib/*/pkgconfig/omniCOSDynamic4.pc
+usr/include/COS/

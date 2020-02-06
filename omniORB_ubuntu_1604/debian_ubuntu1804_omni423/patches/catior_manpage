@@ -1,0 +1,18 @@
+Description: Use minus signs rather then hyphens in manpage
+ Not doing so makes searching and copy-pasting in e.g. UTF-8 locales
+ difficult.
+Forwarded: no
+Author: Floris Bruynooghe <flub@devork.be>
+Last-Update: 2011-07-21
+
+--- a/man/man1/catior.1
++++ b/man/man1/catior.1
+@@ -5,7 +5,7 @@
+ 
+ .SH SYNOPSIS
+ .B catior
+-[-x]
++[\-x]
+ <stringified IOR>
+ 
+ .SH DESCRIPTION

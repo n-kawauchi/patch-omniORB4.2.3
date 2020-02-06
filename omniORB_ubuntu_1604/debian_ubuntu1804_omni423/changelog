@@ -1,0 +1,461 @@
+omniorb (4.2.3-0.1) experimental; urgency=medium
+
+  * Non-maintainer upload.
+
+ -- Noriaki Ando <n-ando@aist.go.jp>  Mon, 03 Feb 2020 14:21:30 +0100
+
+omniorb-dfsg (4.2.2-0.8) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * omniidl: Fix detection of private python3 directory.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 07 Feb 2018 17:12:52 +0100
+
+omniorb-dfsg (4.2.2-0.6) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix passing the --build/--host configure options.
+  * Multiarchify the library packages.
+  * Build using Python3.
+  * Configure --with-openssl instead of --with-openssl=yes.
+  * Build-depend on zlib1g-dev.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 14 Nov 2017 23:56:41 +0100
+
+omniorb-dfsg (4.2.2-0.1) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * New upstream bug fix release.
+    - Supports openssl 1.1. CLoses: #859367.
+  * Apply 4.1.6-2.2 changes to 4.2.0-1.
+  * Add Breaks/Replaces for the -dev packages. Closes: #781650.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 14 Nov 2017 00:25:30 +0100
+
+omniorb-dfsg (4.2.0-1) experimental; urgency=low
+
+  [ Floris Bruynooghe ]
+  * New upstream release (Closes: #737948)
+  * Update debian/watch and debian/README.source for .bz2 filenames.
+  * Update svn-bp:origUrl for new version.
+  * Remove obsolete DM-Upload-Allowed field from debian/control.
+
+  [ Thomas Girard ]
+  * d/p/revert_abi_breakage: remove, no longer needed since the ABI has
+    changed again.
+  * d/rules: change dh_makeshlibs invocation accordingly.
+  * d/p/hurd: remove, applied upstream.
+  * d/p/pkgconfig: fix omnithread pkgconfig file.
+  * d/p/formatstring: fix FTBFS when building with hardening flags.
+  * d/control:
+    - bump standards-version to 3.9.6.
+    - rename packages to reflect new 4.2 ABI.
+    - add appropriate Conflicts: Replaces: wherever needed.
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Tue, 28 Oct 2014 18:00:53 +0100
+
+omniorb-dfsg (4.1.6-2.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * debian/patches/value_in_exception.patch: backport patch to go into 4.2
+    branch (http://www.omniorb-support.com/pipermail/omniorb-list/2016-January/031818.html)
+    LP: #1530855. Closes: #812966.
+  * Bump debhelper and standards versions.
+  * Set priority of -dbg packages to optional.
+  * Fix some lintian warnings.
+  * omniorb-nameserver: Depend on lsb-base.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 13 Nov 2017 14:35:53 +0100
+
+omniorb-dfsg (4.1.6-2) unstable; urgency=low
+
+  * Fix the GNU/hurd patch, mention it's upstream inclusion (Closes: #641571)
+  * Bump standards-version to 3.9.3, no changes needed
+
+ -- Floris Bruynooghe <flub@devork.be>  Sat, 03 Mar 2012 18:52:43 +0000
+
+omniorb-dfsg (4.1.6-1) unstable; urgency=low
+
+  [ Floris Bruynooghe ]
+  * New upstream release
+  * Add build-arch and build-indep targets in debian/rules
+  * Bump standards-version to 3.9.2: no changes
+  * Make init.d script's Provides: match the script name
+  * Add catior_manpage patch to fix minus sign instead of hyphen in
+    the manual page.
+  * Remove manpages included upstream from debian/
+  * Add patch for hurd FTBFS, thanks Pino Toscano (Closes: #641571)
+  * Rebuild sorts out omniidl python versions (Closes: #644904)
+
+  [ Thomas Girard ]
+  * debian/control: Add DM-Upload-Allowed: yes so that Floris can upload when
+    he is Debian Maintainer.
+  * Bump shlib to 4.1.6 because of new inline functions in public headers.
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Mon, 28 Nov 2011 10:22:49 +0100
+
+omniorb-dfsg (4.1.5-2) unstable; urgency=low
+
+  * debian/patches/set_ipv6_v6only_to_0: use upstream strategy to allow
+    omniORB to work with net.ipv6.bindv6only=1 default value. Thanks to Duncan
+    Grisby for the investigation and the hint. Closes: #626099.
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Thu, 12 May 2011 22:57:25 +0200
+
+omniorb-dfsg (4.1.5-1) unstable; urgency=low
+
+  [ Floris Bruynooghe ]
+  * New upstream version (closes: #570422, #585260, #558942).
+  * Switch to dpkg-source 3.0 (quilt) format.
+  * No longer include postscript docs, it is no longer shipped by upstream.
+  * Bump Standards-Version to 3.9.1, no changes needed.
+  * Drop transitional packages, there has been a release now.
+  * Add $remote_fs to Required-{Start|Stop} in nameserver initscript.
+  * debian/omniorb-doc.doc-base: add PDF documentation.
+  * Use bzip2 instead of gzip for .orig tarball.
+  * Switch from dh_pycentral to dh_python2 (closes: #616922):
+     - Drop python-central build-depends, version python-dev.
+     - Place omniidl python modules into /usr/lib/omniidl.
+     - Patch omniidl binary to put /usr/lib/omniidl on sys.path.
+     - Drop XS-Python-Version and XB-Python-Version from debian/rules.
+     - Update debian/omniidl.install for new location.
+  * Strip spurious #!-line in omniidl/main.py module with a patch
+    instead of using sed -d in debian/rules.
+
+  [ Thomas Girard ]
+  * Simplify build process: we no longer need to force CC and CXX.
+  * Bump shlibs to 4.1.5, due to changes in private headers.
+  * Add build-dependency on pkg-config.
+  * Remove Conflicts: and Replaces: no longer needed now that Squeeze was
+    released.
+  * Use Breaks: instead of Conflicts: for omniidl change on omniidl-python.
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Fri, 08 Apr 2011 17:19:28 +0200
+
+omniorb-dfsg (4.1.3-1) unstable; urgency=low
+
+  [ Floris Bruynooghe ]
+  * debian/convertior.1: Use minus sign instead of hyphen (lintian).
+  * debian/omniorb-nameserver.post{inst|rm}: Use true instead of /bin/true to
+    cure minor lintian error.
+  * Include <stdio.h> in catior.cc and convertior.cc (Closes: #505389).
+  * Repack upstream tarball to remove win32 binaries and zipfiles with
+    unclear copyright information, all unused by Debian.
+  * Add ${misc:Depends} to all packages since we use debhelper.
+
+  [ Thomas Girard ]
+  * Update to latest release.
+  * Rename source package from omniorb4 to omniorb-dfsg. omniorb4-nameserver
+    startup script keeps its name to avoid being kept while replacing
+    omniorb4-nameserver package with omniorb-nameserver.
+  * Attempt to compile omniorb on arm using default g++ version
+    (Closes: #533809).
+  * Bump Standards-Version: to 3.8.3.  Section changes for -dbg packages.
+  * Change Section: of -dbg packages to debug.
+
+ -- Floris Bruynooghe <floris.bruynooghe@gmail.com>  Wed, 06 Jan 2010 22:10:57 +0000
+
+omniorb (4.1.2-2) unstable; urgency=low
+
+  * Transition package names to not include "4" where applicable:
+    - Binary packages renamed and transitional packages made where relevant.
+    - Configuration file is now same as upstream (/etc/omniORB.cfg).
+    - No more documentation changes needed.
+    - omniNames dbdir changed to /var/lib/omniorb (from /var/lib/omniorb4).
+    - omniNames logfile changed to /var/log/omniorb-nameserver.log.
+  * Bump debian/compat to 6, no changes.
+
+ -- Floris Bruynooghe <floris.bruynooghe@gmail.com>  Thu, 15 May 2008 20:21:29 +0100
+
+omniorb4 (4.1.2-1) unstable; urgency=low
+
+  [ Floris Bruynooghe ]
+  * New upstream release.  include/omniconfig.h.in and
+    src/lib/omnithread/posix.cc no longer need patching.
+  * Register HTML documentation with doc-base.
+  * Add debian/watch file.
+
+  [ Thomas Girard ]
+  * Add patch from Thomas Lockhart to fix hex version used during the build.
+  * Bump shlibs for libcos4-1 and libomniorb4-1.
+  * Revert an ABI breaking change in class sslContext.
+  * Make debian/copyright machine-interpretable; follow guidelines from
+    http://wiki.debian.org/Proposals/CopyrightFormat
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Sun, 06 Apr 2008 12:02:29 +0000
+
+omniorb4 (4.1.1-4) unstable; urgency=low
+
+  * Fix arm-specific case to exclude armel. The fix is not needed for armel,
+    and g++-4.1 does not seem to work on this platform. Thanks to Riku Voipio
+    for the report and the fix. Closes: #469281.
+  * Tweak configure mechanism to fix kFreeBSD FTBFS.
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Tue, 04 Mar 2008 21:33:08 +0100
+
+omniorb4 (4.1.1-3) unstable; urgency=low
+
+  * Build with g++-4.1 on arm to fix FTBFS. Closes: #460419.
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Sun, 24 Feb 2008 22:29:08 +0100
+
+omniorb4 (4.1.1-2) unstable; urgency=low
+
+  [ Thomas Girard ]
+  * Add missing libomniConnectionMgmt4.so.1 to package libomniorb4-1, and
+    bump libomniorb4-1.shlibs.
+  * Bump Standards-Version: to 3.7.3. (No changes needed.)
+
+  [ Floris Bruynooghe ]
+  * Suggests omniidl4-python in omniidl4 rather than recommending it.
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Fri, 21 Dec 2007 21:27:31 +0100
+
+omniorb4 (4.1.1-1) unstable; urgency=low
+
+  [ Thomas Girard ]
+  * Move omnicpp man page to section 1.
+
+  [ Floris Bruynooghe ]
+  * New upstream release.
+  * No longer modify configure.ac and configure, upstream caters for
+    kfreebsd now.  Thanks to Duncan Grisby for accepting the patch.
+  * No longer create omniNames.html, shipped by upstream now.
+  * Bump shlibs version for libomniorb4-1 and libcos4-1 to 4.1.1 due to
+    ABI change in the internal header files (which are used by
+    python-omniorb and omnievents).
+
+ -- Floris Bruynooghe <floris.bruynooghe@gmail.com>  Mon, 26 Nov 2007 00:44:09 +0000
+
+omniorb4 (4.1.0-1) unstable; urgency=low
+
+  [ Floris Bruynooghe ]
+  * Package taken over by CORBA team, with blessing from Bastian Blank.
+  * New upstream release (Closes: #398462, #430422).
+  * Patch for kfreebsd, thanks Petr Salinger (Closes: #341089).
+  * Include examples (Closes: #197061).
+  * Change persistent data directory of omniNames (Closes: #282811).
+  * Enable all COS stubs to be build (Closes: #107107).
+  * Removed omniidl4.prerm as pycentral does that job now.
+  * Replace ${Source-Version} by ${binary:Version} in debian/control.
+  * Remove the #! line from omniidl's main.py in site-packages.
+  * Add manpages for omniMapper, omniNames and omnicpp.
+  * Increased the debhelper compat level to 5.
+  * Increased Standards-Version: to 3.7.2.
+  * Binary package name changes due to new ABIs: libcos4 -> libcos4-1,
+    libomniorb4 -> libomniorb4-1 (Closes: #430281).
+  * Removed obsolete Conflicts: and Provides: in debian/control.
+  * Moved the errorlog to a Policy compliant location.
+
+  [ Thomas Girard ]
+  * Give --build and --host flags to configure script.
+  * Add -dbg packages based on Floris' work (Closes: #42953).
+  * Tighten dh_pycentral invocation to omniidl4 only.
+  * Rework short descriptions.
+  * Add Vcs-Svn:, Vcs-Browser: and Homepage: debian/control fields.
+
+ -- Thomas Girard <thomas.g.girard@free.fr>  Sat, 17 Nov 2007 18:54:58 +0100
+
+omniorb4 (4.0.6-2.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Use python-central instead of python-support because the dependency
+    omniidl4-python also use that. And with that python-central uses the
+    standard location which doesn't break the expectation of this package.
+    Closes: #387414
+
+ -- Raphael Hertzog <hertzog@debian.org>  Fri, 15 Dec 2006 09:55:48 +0100
+
+omniorb4 (4.0.6-2.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Update package to the last python policy (Closes: #380881).
+  * Bump Standards-Version to 3.7.2.
+  * Update debian/copyright with up to date FSF address.
+
+ -- Pierre Habouzit <madcoder@debian.org>  Sun,  3 Sep 2006 21:01:06 +0200
+
+omniorb4 (4.0.6-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Don't hardcode /usr/lib/python2.3 in omniorb4.install; use
+    /usr/lib/python2.4 instead. Fixes FTBFS with python 2.4.
+  * Rebuild against python 2.4. (Closes: #383331, #383426)
+
+ -- Steinar H. Gunderson <sesse@debian.org>  Mon, 28 Aug 2006 23:18:42 +0200
+
+omniorb4 (4.0.6-2) unstable; urgency=low
+
+  * C++ ABI transition.
+    - Rename packages: libcos3 -> libcos3c2, libomniorb4 -> libomniorb4c2,
+      libomnithread3 -> libomnithread3c2.
+
+ -- Bastian Blank <waldi@debian.org>  Mon, 18 Jul 2005 06:59:56 +0200
+
+omniorb4 (4.0.6-1) unstable; urgency=medium
+
+  * New upstream version. (closes: #304772)
+
+ -- Bastian Blank <waldi@debian.org>  Sat, 16 Apr 2005 10:18:28 +0200
+
+omniorb4 (4.0.5-2) unstable; urgency=high
+
+  * Fix DoS. (closes: #299807)
+
+ -- Bastian Blank <waldi@debian.org>  Sun, 20 Mar 2005 11:13:56 +0100
+
+omniorb4 (4.0.5-1) unstable; urgency=low
+
+  * New upstream version. (closes: #277130)
+
+ -- Bastian Blank <waldi@debian.org>  Fri, 29 Oct 2004 16:48:07 +0200
+
+omniorb4 (4.0.4.1-3) unstable; urgency=medium
+
+  * src/tool/omniidl:
+    - Build omnicpp.
+  * debian:
+    - Install omnicpp. (closes: #267952)
+
+ -- Bastian Blank <waldi@debian.org>  Mon, 11 Oct 2004 21:38:49 +0200
+
+omniorb4 (4.0.4.1-2) unstable; urgency=medium
+
+  * configure:
+    - Fix definition of openssl libs. (closes: #265848)
+
+ -- Bastian Blank <waldi@debian.org>  Sun, 15 Aug 2004 14:09:40 +0200
+
+omniorb4 (4.0.4.1-1) unstable; urgency=high
+
+  * Remove undistributable file.
+  * debian/copyright:
+    - Update.
+
+ -- Bastian Blank <waldi@debian.org>  Sun, 08 Aug 2004 20:45:30 +0200
+
+omniorb4 (4.0.4-1) unstable; urgency=low
+
+  * New upstream version. (closes: #263006)
+
+ -- Bastian Blank <waldi@debian.org>  Mon, 02 Aug 2004 22:28:28 +0200
+
+omniorb4 (4.0.3-2) unstable; urgency=low
+
+  * debian/control:
+    - Add pkg-config to Depends for *-dev.
+    - Use python:Depends.
+  * debian/omniorb4-doc.install:
+    - Only install (fixed) html documentation. (closes: #200416)
+  * debian/omniidl4.postinst: 
+    - Remove.
+  * debian/*-dev.install:
+    - Install pkg-config files. (closes: #223397)
+  * debian/rules:
+    - Reorganise autotools file update.
+    - Use dh_python.
+    - Fix library dependencies.
+  * doc:
+    - Fix name of config file in tex source and html output of the
+      documentation.
+
+ -- Bastian Blank <waldi@debian.org>  Sat, 03 Jan 2004 15:22:11 +0100
+
+omniorb4 (4.0.3-1) unstable; urgency=low
+
+  * new upstream version
+
+ -- Bastian Blank <waldi@debian.org>  Wed, 26 Nov 2003 17:34:59 +0100
+
+omniorb4 (4.0.2.cvs200300828-1) unstable; urgency=low
+
+  * new cvs version
+    - fixes python2.3 problems (closes: #207641)
+
+ -- Bastian Blank <waldi@debian.org>  Thu, 28 Aug 2003 16:39:48 +0200
+
+omniorb4 (4.0.2-1) unstable; urgency=low
+
+  * new upstream version
+  * debian/*.files
+    - new unstable python
+  * aclocal.m4, configure
+    - open_ssl_libs instead of open_ssl_lib
+
+ -- Bastian Blank <waldi@debian.org>  Tue, 12 Aug 2003 16:29:23 +0200
+
+omniorb4 (4.0.1-1) unstable; urgency=low
+
+  * new upstream version
+  * debian/control
+    - fix further depends (closes: #188005)
+  * include/omniORB4/CORBA_sysdep_auto.h
+    - try to fix long double disable for m68k
+
+ -- Bastian Blank <waldi@debian.org>  Mon, 07 Apr 2003 18:55:58 +0200
+
+omniorb4 (4.0.0-3) unstable; urgency=low
+
+  * debian/control
+    - libomniorb4-dev depends on libomnithread3-dev (closes: #182059)
+    - fix descriptions
+  * include/omniORB4/CORBA_sysdep_auto.h
+    - disable long double on m68k
+
+ -- Bastian Blank <waldi@debian.org>  Fri, 21 Mar 2003 19:11:48 +0100
+
+omniorb4 (4.0.0-2) unstable; urgency=low
+
+  * debian/rules
+    - fix clean target (closes: #176912)
+    - update autoconf files
+    - add omnicpp compatiblity symlink to omniidl4
+  * debian/control
+    - remove gcc-3.2 depency
+    - move Standards-Version to 3.5.8
+    - build-depend against autotools-dev
+
+ -- Bastian Blank <waldi@debian.org>  Thu, 16 Jan 2003 20:08:04 +0100
+
+omniorb4 (4.0.0-1) unstable; urgency=low
+
+  * New upstream version. (closes: #167456)
+  * Remove some packages.
+
+ -- Bastian Blank <waldi@debian.org>  Fri, 22 Nov 2002 15:02:39 +0100
+
+omniorb4 (3.99.cvs20020830-4) unstable; urgency=low
+
+  * include internal header
+
+ -- Bastian Blank <waldi@debian.org>  Mon, 02 Sep 2002 10:35:02 +0000
+
+omniorb4 (3.99.cvs20020830-3) unstable; urgency=low
+
+  * sysdeps use <stdint.h>
+  * fix long same as int check
+  * add a DefaultInitRef to configfile
+  * fix include installation
+
+ -- Bastian Blank <waldi@debian.org>  Sun, 01 Sep 2002 19:26:55 +0000
+
+omniorb4 (3.99.cvs20020830-2) unstable; urgency=low
+
+  * add correct configfile
+  * use /etc/omniORB4.cfg
+  * add --disable-thread-tracing to configure
+
+ -- Bastian Blank <waldi@debian.org>  Sat, 31 Aug 2002 11:17:47 +0000
+
+omniorb4 (3.99.cvs20020830-1) unstable; urgency=low
+
+  * new cvs version
+
+ -- Bastian Blank <waldi@debian.org>  Fri, 30 Aug 2002 15:14:16 +0000
+
+omniorb4 (3.99.cvs20020327-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Bastian Blank <waldi@debian.org>  Wed, 27 Mar 2002 17:29:02 +0100
+

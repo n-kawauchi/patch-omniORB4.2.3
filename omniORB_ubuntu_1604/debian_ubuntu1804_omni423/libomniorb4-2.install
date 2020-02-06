@@ -1,0 +1,7 @@
+usr/lib/*/libomniCodeSets4.so.*
+usr/lib/*/libomniConnectionMgmt4.so.*
+usr/lib/*/libomniDynamic4.so.*
+usr/lib/*/libomniORB4.so.*
+usr/lib/*/libomnisslTP4.so.*
+usr/lib/*/libomniZIOP4.so.*
+usr/lib/*/libomniZIOPDynamic4.so.*

@@ -1,0 +1,19 @@
+Document: omniorb-user-guide
+Title: The omniORB version 4.1 User's Guide
+Author: Duncan Grisby, David Riddoch
+Abstract: omniORB is an Object Request Broker (ORB) that implements
+ the 2.6 specification of the Common Object Request Broker Architecture
+ (CORBA).  It has passed the Open Group CORBA compliant testsuite (for
+ CORBA 2.1) and was one of the three ORBs to be granted the CORBA brand
+ in June 1999.
+ .
+ This user guide tells you how to use omniORB to develop CORBA
+ applications.  It assumes a basic understanding of CORBA.
+Section: Programming
+
+Format: HTML
+Index: /usr/share/doc/omniorb-doc/omniORB/index.html
+Files: /usr/share/doc/omniorb-doc/omniORB/*.html
+
+Format: PDF
+Files: /usr/share/doc/omniorb-doc/omniORB.pdf

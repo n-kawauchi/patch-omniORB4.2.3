@@ -1,0 +1,46 @@
+Description: Link COS libs so all their symbols are resolved
+ The libCOS and libCOSDynamic libraries did not link against some
+ other omniorb libraries but used symbols from them.  This makes sure
+ they are linked anyway so that an applicationi using them does not
+ have to be repsonsible for ensuring the libraries have all required
+ symbols available.
+Bug-Debian: http://bugs.debian.org/558942
+Forwarded: http://www.omniorb-support.com/pipermail/omniorb-dev/2010-August/000298.html
+Author: Floris Bruynooghe <flub@devork.be>
+Last-Update: 2010-08-08
+
+--- a/src/services/mklib/dir.mk
++++ b/src/services/mklib/dir.mk
+@@ -121,13 +121,17 @@
+ dynimps := $(skshared) $(patsubst $(DLLDebugSearchPattern),$(DLLNoDebugSearchPattern), \
+          $(OMNIORB_LIB))
+ else
+-imps := $(OMNIORB_LIB_NODYN)
+-dynimps := $(OMNIORB_LIB)
++# Link COS with omniDynamic and COSDynamic with COS so all symbols are
++# resolved at link time.  Leaving symbols unresolved is ok for the normal
++# GNU and SysV linkers but not for more restrictive linkers like GOLD.
++# $(soext) is used in the $(skshared) target.
++soext := $(OMNIORB_MAJOR_VERSION).so.$(OMNIORB_MINOR_VERSION).$(OMNIORB_MICRO_VERSION)
++imps := $(OMNIORB_LIB_NODYN) -lomniDynamic$(OMNIORB_MAJOR_VERSION)
++dynimps := $(OMNIORB_LIB) -Lshared -lCOS$(OMNIORB_MAJOR_VERSION)
+ endif
+ 
+ ifdef AIX
+-# AIX thinks the skeleton stubs depend on omniDynamic and also that
+-# COSDynamic depends on COS.
++# AIX has special library names.
+ oov = $(OMNIORB_MAJOR_VERSION)$(OMNIORB_MINOR_VERSION)
+ oovm = $(oov)$(OMNIORB_MICRO_VERSION)
+ imps := -lomniORB$(oov) -lomniDynamic$(oov) $(OMNITHREAD_LIB)
+@@ -149,8 +153,9 @@
+ $(skshared): $(patsubst %, shared/%, $(COS_SK_OBJS))
+ 	@(namespec="$(sknamespec)"; extralibs="$(imps) $(extralibs)"; \
+          $(MakeCXXSharedLibrary))
++	ln -s libCOS$(soext) shared/libCOS$(OMNIORB_MAJOR_VERSION).so
+ 
+-$(dynskshared): $(patsubst %, shared/%, $(COS_DYNSK_OBJS))
++$(dynskshared): $(skshared) $(patsubst %, shared/%, $(COS_DYNSK_OBJS))
+ 	@(namespec="$(dynsknamespec)"; extralibs="$(dynimps)"; \
+          $(MakeCXXSharedLibrary))
+ 
