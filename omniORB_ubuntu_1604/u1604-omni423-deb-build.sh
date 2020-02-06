@@ -34,14 +34,9 @@ cd ${DIR_NAME}
 wget https://sourceforge.net/projects/omniorb/files/omniORB/omniORB-${OMNI_VER}/omniORB-${OMNI_VER}.tar.bz2
 tar xf omniORB-${OMNI_VER}.tar.bz2
 
-# Get the debian directory from the package creation source.
-apt source omniorb
-OMNI_PKG_SRC_DIR=`ls -d omniorb-dfsg*/`
-OMNI_PKG_SRC_NAME=`echo ${OMNI_PKG_SRC_DIR} | sed 's/\///'`
-cp -r ${OMNI_PKG_SRC_NAME}/debian omniORB-${OMNI_VER}/
-rm -rf omniorb-dfsg*
+# Use ubuntu 18.04 + omniORB 4.2.3 debian directory.
+cp -r ../debian_ubuntu1804_omni423 omniORB-${OMNI_VER}/debian
 
-patch -d omniORB-${OMNI_VER}/debian < ../omniORB-${OMNI_VER}_debian.patch
 patch -d omniORB-${OMNI_VER}/debian < ../omniORB-${OMNI_VER}_ubuntu1604_rules.patch
 cd -
 
