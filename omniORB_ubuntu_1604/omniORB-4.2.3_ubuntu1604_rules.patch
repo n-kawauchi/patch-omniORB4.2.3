@@ -1,0 +1,12 @@
+--- rules	2020-02-05 18:25:03.145503505 +0900
++++ rules_mod	2020-02-05 18:26:49.017503505 +0900
+@@ -60,8 +60,7 @@ install: build
+ 	$(MAKE) -C build install DESTDIR=$(CURDIR)/debian/tmp
+ 	-find debian/tmp -name "*.pyc" -exec rm {} \;
+ 	find debian/tmp -type d -name __pycache__ | xargs -r rm -rf
+-	dh_missing --sourcedir=debian/tmp --list-missing
+-	dh_install --sourcedir=debian/tmp
++	dh_install --sourcedir=debian/tmp --list-missing
+ 
+ # Build architecture-independent files here.
+ binary-indep: build install
