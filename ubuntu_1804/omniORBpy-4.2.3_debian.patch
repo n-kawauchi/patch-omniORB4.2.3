@@ -1,6 +1,6 @@
 diff -uprN debian/changelog debian_mod/changelog
---- debian/changelog	2020-02-12 14:14:44.493119029 +0900
-+++ debian_mod/changelog	2020-02-12 14:14:44.493119029 +0900
+--- debian/changelog	2020-02-14 15:59:28.744900635 +0900
++++ debian_mod/changelog	2020-02-14 15:59:07.603476634 +0900
 @@ -1,3 +1,10 @@
 +python-omniorb (4.2.3-0.1) experimental; urgency=medium
 +
@@ -13,8 +13,8 @@ diff -uprN debian/changelog debian_mod/changelog
  
    * Non-maintainer upload.
 diff -uprN debian/control debian_mod/control
---- debian/control	2020-02-12 14:14:44.493119029 +0900
-+++ debian_mod/control	2020-02-12 14:14:44.493119029 +0900
+--- debian/control	2020-02-14 15:59:28.744900635 +0900
++++ debian_mod/control	2020-02-14 15:59:07.603476634 +0900
 @@ -7,20 +7,20 @@ Build-Depends: debhelper (>= 9),
    dh-python,
    python-all-dev, python-all-dbg,
@@ -81,7 +81,7 @@ diff -uprN debian/control debian_mod/control
  Description: CORBA OMG standard files for python-omniorb
   omniORB4 is a freely available Common Object Request Broker
   Architecture (CORBA) 2.6 compliant object request broker (ORB)
-@@ -78,10 +78,10 @@ Description: CORBA OMG standard files fo
+@@ -78,10 +78,12 @@ Description: CORBA OMG standard files fo
   python-pyorbit-omg since only one package can provide the default
   CORBA bindings.
  
@@ -91,31 +91,33 @@ diff -uprN debian/control debian_mod/control
 -Depends: omniidl, ${python:Depends}, ${misc:Depends}
 -Recommends: python-omniorb
 +Depends: omniidl, ${python3:Depends}, ${misc:Depends}
++Conflicts: omniidl-python
++Replaces: omniidl-python
 +Recommends: python3-omniorb
  Description: omniidl backend to compile Python stubs from IDL files
   omniORB4 is a freely available Common Object Request Broker
   Architecture (CORBA) 2.6 compliant object request broker (ORB)
 diff -uprN debian/omniidl-python3.install debian_mod/omniidl-python3.install
 --- debian/omniidl-python3.install	1970-01-01 09:00:00.000000000 +0900
-+++ debian_mod/omniidl-python3.install	2020-02-12 14:14:44.493119029 +0900
++++ debian_mod/omniidl-python3.install	2020-02-14 15:59:07.603476634 +0900
 @@ -0,0 +1 @@
 +usr/lib/python*/*-packages/omniidl_be/python.py usr/lib/omniidl/omniidl_be/
 diff -uprN debian/python3-omniorb-omg.install debian_mod/python3-omniorb-omg.install
 --- debian/python3-omniorb-omg.install	1970-01-01 09:00:00.000000000 +0900
-+++ debian_mod/python3-omniorb-omg.install	2020-02-12 14:14:44.493119029 +0900
++++ debian_mod/python3-omniorb-omg.install	2020-02-14 15:59:07.603476634 +0900
 @@ -0,0 +1,2 @@
 +usr/lib/python*/*-packages/*.py
 +usr/lib/python*/*-packages/CosNaming*
 diff -uprN debian/python3-omniorb.install debian_mod/python3-omniorb.install
 --- debian/python3-omniorb.install	1970-01-01 09:00:00.000000000 +0900
-+++ debian_mod/python3-omniorb.install	2020-02-12 14:14:44.493119029 +0900
++++ debian_mod/python3-omniorb.install	2020-02-14 15:59:07.603476634 +0900
 @@ -0,0 +1,3 @@
 +usr/lib/python*/*-packages/omniORB.pth
 +usr/lib/python*/*-packages/_omni*-??m-*.so*
 +usr/lib/python*/*-packages/omniORB/
 diff -uprN debian/rules debian_mod/rules
---- debian/rules	2020-02-12 14:14:44.493119029 +0900
-+++ debian_mod/rules	2020-02-12 14:14:44.493119029 +0900
+--- debian/rules	2020-02-14 15:59:28.748898635 +0900
++++ debian_mod/rules	2020-02-14 15:59:07.603476634 +0900
 @@ -23,7 +23,7 @@ ifeq (,$(findstring noopt,$(DEB_BUILD_OP
    CXX += -O2
  endif
